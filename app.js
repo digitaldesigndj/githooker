@@ -9,6 +9,12 @@ var user = require('./routes/user');
 var http = require('http');
 var path = require('path');
 
+	// http://nodejs.org/api.html#_child_processes
+	var sys = require('sys')
+	var exec = require('child_process').exec;
+	var child;
+
+
 var app = express();
 
 // all environments
@@ -39,4 +45,13 @@ http.createServer(app).listen(app.get('port'), function(){
 app.post('/', function(req, res) {
 	console.log( req.body );
 	// console.log( res );
+
+	// executes `pwd`
+	child = exec("cd /var/www/boundstar.com/boundstar;docpad generate", function (error, stdout, stderr) {
+		sys.print('stdout: ' + stdout);
+		sys.print('stderr: ' + stderr);
+		if (error !== null) {
+			console.log('exec error: ' + error);
+		}
+	});
 });
