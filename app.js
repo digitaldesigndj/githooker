@@ -43,9 +43,9 @@ http.createServer(app).listen(app.get('port'), function(){
 });
 
 app.post('/', function(req, res) {
-	console.log( req.body );
+	// console.log( req.body );
 	// console.log( res );
-
+	console.log( 'got a githook' );
 	// executes `pwd`
 	child = exec("cd /var/www/boundstar.com/boundstar;docpad generate", function (error, stdout, stderr) {
 		sys.print('stdout: ' + stdout);
